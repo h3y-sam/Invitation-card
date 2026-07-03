@@ -1,0 +1,1146 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ============================================================
+   NISHA × VIKRAM — LUXURY WEDDING INVITATION DESIGN SYSTEM
+   Royal Indian palette · Cinematic · Awwwards quality
+   ============================================================ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-ivory: var(--ivory);
+  --color-cream: var(--cream);
+  --color-champagne: var(--champagne);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-bronze: var(--bronze);
+  --color-plum: var(--plum);
+  --color-royal: var(--royal);
+  --color-burgundy: var(--burgundy);
+  --color-ink: var(--ink);
+  --font-display: "Playfair Display", serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-sans: "DM Sans", sans-serif;
+}
+
+:root {
+  /* Palette — oklch */
+  --ivory:     oklch(0.985 0.012 85);
+  --cream:     oklch(0.965 0.020 82);
+  --champagne: oklch(0.905 0.045 82);
+  --gold:      oklch(0.755 0.115 78);
+  --gold-soft: oklch(0.82  0.075 82);
+  --bronze:    oklch(0.55  0.095 55);
+  --plum:      oklch(0.28  0.075 340);
+  --royal:     oklch(0.32  0.115 300);
+  --burgundy:  oklch(0.30  0.115 20);
+  --ink:       oklch(0.19  0.030 320);
+
+  --background: var(--ivory);
+  --foreground: var(--ink);
+
+  --grad-royal:   linear-gradient(135deg, oklch(0.22 0.09 310) 0%, oklch(0.30 0.11 340) 50%, oklch(0.25 0.10 20) 100%);
+  --grad-gold:    linear-gradient(120deg, oklch(0.70 0.11 70) 0%, oklch(0.86 0.09 85) 50%, oklch(0.68 0.12 55) 100%);
+  --grad-night:   radial-gradient(ellipse at 50% 20%, oklch(0.30 0.09 300) 0%, oklch(0.15 0.06 310) 55%, oklch(0.08 0.04 320) 100%);
+  --grad-page:    linear-gradient(180deg, var(--ivory) 0%, var(--cream) 100%);
+
+  --shadow-soft:   0 10px 40px -12px color-mix(in oklab, var(--plum) 25%, transparent);
+  --shadow-lift:   0 30px 80px -30px color-mix(in oklab, var(--plum) 45%, transparent);
+  --shadow-gold:   0 18px 60px -20px color-mix(in oklab, var(--gold) 55%, transparent);
+  --shadow-inner:  inset 0 1px 0 color-mix(in oklab, var(--champagne) 65%, transparent);
+
+  --radius: 0.75rem;
+  --radius-lg: 1.25rem;
+  --radius-xl: 2rem;
+}
+
+@layer base {
+  html, body { background: var(--background); color: var(--foreground); }
+  body {
+    font-family: var(--font-serif);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  ::selection { background: color-mix(in oklab, var(--gold) 40%, transparent); color: var(--ink); }
+  h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; letter-spacing: -0.01em; }
+}
+
+/* ---------- Utility classes ---------- */
+
+.font-display { font-family: var(--font-display); }
+.font-serif   { font-family: var(--font-serif); }
+.font-sans    { font-family: var(--font-sans); }
+
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: color-mix(in oklab, var(--bronze) 85%, var(--ink));
+}
+
+.gold-text {
+  background: var(--grad-gold);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hairline {
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  color: color-mix(in oklab, var(--gold) 90%, var(--bronze));
+}
+.hairline::before, .hairline::after {
+  content: ""; height: 1px; width: 3rem;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+}
+
+.divider-orn {
+  display: flex; align-items: center; justify-content: center; gap: 1rem;
+  color: color-mix(in oklab, var(--gold) 90%, var(--bronze));
+}
+.divider-orn .line {
+  height: 1px; flex: 1; max-width: 8rem;
+  background: linear-gradient(90deg, transparent, currentColor, transparent);
+}
+
+.glass {
+  background: color-mix(in oklab, var(--ivory) 55%, transparent);
+  backdrop-filter: blur(18px) saturate(1.2);
+  -webkit-backdrop-filter: blur(18px) saturate(1.2);
+  border: 1px solid color-mix(in oklab, var(--gold) 25%, transparent);
+  box-shadow: var(--shadow-soft), var(--shadow-inner);
+}
+
+.paper {
+  background:
+    radial-gradient(ellipse at top, color-mix(in oklab, var(--champagne) 25%, var(--ivory)) 0%, var(--ivory) 60%),
+    var(--ivory);
+  box-shadow: var(--shadow-lift);
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  position: relative;
+}
+.paper::before {
+  content: ""; position: absolute; inset: 12px;
+  border: 1px solid color-mix(in oklab, var(--gold) 35%, transparent);
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.btn-royal {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 0.75rem;
+  padding: 1.1rem 2.4rem;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--ivory);
+  background: var(--grad-royal);
+  border: 1px solid color-mix(in oklab, var(--gold) 60%, transparent);
+  border-radius: 999px;
+  box-shadow: var(--shadow-lift), inset 0 0 0 1px color-mix(in oklab, var(--gold) 20%, transparent);
+  transition: transform 0.5s cubic-bezier(.2,.8,.2,1), box-shadow 0.5s;
+  overflow: hidden;
+  cursor: pointer;
+}
+.btn-royal::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(120deg, transparent 20%, color-mix(in oklab, var(--gold) 40%, transparent) 45%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 1.1s ease;
+}
+.btn-royal:hover { transform: translateY(-2px); box-shadow: var(--shadow-gold); }
+.btn-royal:hover::after { transform: translateX(100%); }
+
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  padding: 0.8rem 1.6rem;
+  font-family: var(--font-sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--bronze);
+  border: 1px solid color-mix(in oklab, var(--gold) 45%, transparent);
+  border-radius: 999px;
+  transition: all 0.4s ease;
+  cursor: pointer;
+  background: color-mix(in oklab, var(--ivory) 65%, transparent);
+}
+.btn-ghost:hover { color: var(--plum); border-color: var(--gold); background: var(--cream); }
+
+/* ---------- Preloader ---------- */
+
+.preloader {
+  position: fixed; inset: 0; z-index: 100;
+  background: linear-gradient(160deg, oklch(0.14 0.05 60) 0%, oklch(0.11 0.04 55) 50%, oklch(0.09 0.03 60) 100%);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--champagne);
+}
+.preloader .mandala { width: 220px; height: 220px; }
+.preloader .mandala circle,
+.preloader .mandala path,
+.preloader .mandala line { stroke: color-mix(in oklab, var(--gold) 95%, var(--champagne)); fill: none; }
+
+/* ---------- Gate Intro ---------- */
+
+.gate-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, #2a1a11 0%, #130d09 72%);
+}
+
+.gate-enter {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  background: transparent;
+  display: block;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.gate-canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  perspective: 1400px;
+  transform-style: preserve-3d;
+}
+
+.gate-scene {
+  position: absolute;
+  inset: 0;
+  background-image: url('/palace-hero-user.jpg');
+  background-position: center center;
+  background-size: cover;
+  filter: brightness(0.42) contrast(1.08);
+}
+
+.gate-door {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+  background-image: url('/wedding-door-landscape.png');
+  background-repeat: no-repeat;
+  transition: transform 1.6s cubic-bezier(0.25, 1, 0.5, 1), opacity 1.6s ease;
+  will-change: transform;
+  filter: brightness(0.96) contrast(1.02);
+  backface-visibility: hidden;
+  z-index: 2;
+}
+
+/* Default to landscape viewport rules (desktop) */
+.gate-door-left {
+  left: 0;
+  background-size: 100vw 100vw;
+  background-position: 0px center;
+  transform-origin: left center;
+}
+
+.gate-door-right {
+  right: 0;
+  background-size: 100vw 100vw;
+  background-position: -50vw center;
+  transform-origin: right center;
+}
+
+/* Portrait viewport rules (mobile) */
+@media (max-aspect-ratio: 1/1) {
+  .gate-door-left {
+    background-size: 100vh 100vh;
+    background-position: calc(50vw - 50vh) center;
+  }
+  .gate-door-right {
+    background-size: 100vh 100vh;
+    background-position: -50vh center;
+  }
+}
+
+.gate-seam {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, rgba(252, 229, 179, 0.25), rgba(227, 178, 95, 0.75), rgba(252, 229, 179, 0.25));
+  box-shadow: 0 0 18px rgba(227, 178, 95, 0.45);
+  transition: opacity 0.55s ease;
+  z-index: 3;
+}
+
+.gate-hint {
+  position: absolute;
+  left: 50%;
+  bottom: clamp(1rem, 4vh, 2rem);
+  transform: translateX(-50%);
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #fbe8bf;
+  padding: 0.7rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid rgba(234, 191, 112, 0.55);
+  background: rgba(26, 13, 5, 0.45);
+  text-shadow: 0 1px 5px rgba(14, 6, 2, 0.8);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+  z-index: 4;
+}
+
+.gate-intro.is-opening .gate-door-left {
+  transform: rotateY(110deg) translateZ(-100px);
+  opacity: 0;
+}
+
+.gate-intro.is-opening .gate-door-right {
+  transform: rotateY(-110deg) translateZ(-100px);
+  opacity: 0;
+}
+
+.gate-intro.is-opening .gate-seam {
+  opacity: 0;
+}
+
+.gate-intro.is-opening .gate-hint {
+  opacity: 0;
+  transform: translate(-50%, 15px);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  overflow: hidden;
+  background: url('/palace-hero-user.jpg') center bottom / cover no-repeat;
+  color: #3f2b1d;
+}
+.hero .layer { position: absolute; inset: 0; will-change: transform; }
+
+/* Sky base */
+.hero-sky {
+  display: none;
+  z-index: 0;
+}
+
+/* Palace — cover, anchored to bottom, single instance, no tiling */
+.hero-palace {
+  background-size: cover;
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  z-index: 1;
+  filter: none;
+  mask-image: none;
+  -webkit-mask-image: none;
+}
+
+/* Side & bottom fade */
+.hero-fade-sides {
+  display: none;
+  z-index: 2;
+}
+
+/* Top gradient — deep navy for text contrast */
+.hero-fade-top {
+  display: none;
+  z-index: 3;
+}
+
+/* Radial vignette */
+.hero-vignette {
+  display: none;
+  z-index: 4;
+}
+
+/* Stars */
+.hero-stars {
+  display: none;
+  z-index: 5;
+}
+
+/* Atmospheric fog at palace base */
+.hero-fog {
+  display: none;
+  z-index: 6;
+}
+@keyframes fogDrift {
+  0%   { transform: translateX(0)   scaleX(1);    opacity: 0.7; }
+  50%  { transform: translateX(2%)  scaleX(1.04); opacity: 0.9; }
+  100% { transform: translateX(-2%) scaleX(0.97); opacity: 0.75; }
+}
+
+/* Gold haze behind text */
+.hero-text-glow {
+  display: none;
+  z-index: 7;
+}
+
+/* Volumetric light ray from palace entrance */
+.hero-ray {
+  display: none;
+  z-index: 8;
+}
+.hero-ray::before {
+  display: none;
+}
+@keyframes rayPulse {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1.0; }
+}
+
+/* Moon — large, top-right */
+.hero-moon {
+  display: none;
+  z-index: 9;
+}
+@keyframes moonPulse {
+  0%, 100% { box-shadow: 0 0 28px 8px rgba(210,170,80,0.45), 0 0 80px 28px rgba(190,140,60,0.20), 0 0 160px 60px rgba(170,120,40,0.10); }
+  50%       { box-shadow: 0 0 36px 12px rgba(210,170,80,0.55), 0 0 100px 35px rgba(190,140,60,0.26), 0 0 200px 70px rgba(170,120,40,0.13); }
+}
+
+/* Corner leaf decorations */
+.hero-leaf {
+  position: absolute;
+  z-index: 10;
+  pointer-events: none;
+  width: clamp(140px, 18vw, 220px);
+}
+.hero-leaf--tl { top: 0; left: 0; }
+.hero-leaf--tr { top: 0; right: 0; transform: scaleX(-1); }
+
+/* Golden dust particles */
+.hero-dust {
+  display: none;
+  z-index: 11;
+}
+.dust-mote {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(220,175,90,0.75);
+  box-shadow: 0 0 3px 1px rgba(220,175,90,0.40);
+  animation: dustFloat linear infinite;
+}
+.dust-bokeh {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(220,175,90,0.35) 0%, transparent 70%);
+  animation: bokehFloat ease-in-out infinite;
+}
+@keyframes dustFloat {
+  0%   { transform: translate(0, 0) rotate(0deg); opacity: 0; }
+  8%   { opacity: 0.8; }
+  92%  { opacity: 0.6; }
+  100% { transform: translate(30px, -120px) rotate(360deg); opacity: 0; }
+}
+@keyframes bokehFloat {
+  0%   { transform: translate(0, 0) scale(1); opacity: 0; }
+  15%  { opacity: 0.5; }
+  50%  { transform: translate(14px, -35px) scale(1.15); opacity: 0.35; }
+  85%  { opacity: 0.3; }
+  100% { transform: translate(-8px, -70px) scale(0.9); opacity: 0; }
+}
+
+/* ── Hero copy — text sits in upper 55%, palace fills lower 55% ── */
+.hero-copy {
+  position: relative; z-index: 22;
+  height: 100%;
+  display: flex; flex-direction: column; align-items: center;
+  /* Keep copy visibly above the palace silhouette on all viewport sizes */
+  justify-content: center;
+  padding-top: clamp(4rem, 10vh, 7rem);
+  padding-bottom: clamp(9rem, 20vh, 14rem);
+  text-align: center;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+@media (max-width: 768px) {
+  .hero-copy { padding-top: 4.25rem; padding-bottom: 8.5rem; }
+}
+@media (max-width: 480px) {
+  .hero-copy { padding-top: 3.75rem; padding-bottom: 7.25rem; }
+}
+
+.hero-copy .eyebrow {
+  color: #fff8ea;
+  text-shadow:
+    0 1px 2px rgba(24, 11, 4, 0.85),
+    0 2px 12px rgba(45, 22, 8, 0.72);
+}
+.hero-copy .names {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 9vw, 7.5rem);
+  line-height: 1;
+  font-weight: 400;
+  color: #fff8ea;
+  -webkit-text-stroke: 0.6px rgba(34, 16, 6, 0.5);
+  text-shadow:
+    0 2px 4px rgba(24, 11, 4, 0.82),
+    0 8px 24px rgba(52, 26, 10, 0.58);
+}
+.hero-copy .amp {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  color: #e8c87a;
+  text-shadow: 0 1px 18px rgba(5,0,20,0.80);
+  margin: 0.4rem 0;
+  letter-spacing: 0.02em;
+}
+.hero-copy .meta {
+  color: #fff2d6;
+  text-shadow:
+    0 1px 2px rgba(24, 11, 4, 0.82),
+    0 2px 10px rgba(45, 22, 8, 0.65);
+}
+
+/* Countdown pill */
+.hero-countdown {
+  display: flex;
+  align-items: center;
+  padding: 0.85rem 2rem;
+  background: rgba(64, 36, 16, 0.58);
+  border: 1px solid rgba(198, 152, 86, 0.34);
+  border-radius: 999px;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 241, 206, 0.16),
+    0 8px 28px rgba(80, 43, 18, 0.34);
+}
+.countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 1.4rem;
+}
+.countdown-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 400;
+  line-height: 1;
+  color: #fff6e5;
+  text-shadow: 0 1px 8px rgba(26, 13, 5, 0.62);
+}
+.countdown-label {
+  font-family: var(--font-sans);
+  font-size: 0.55rem;
+  letter-spacing: 0.38em;
+  text-transform: uppercase;
+  color: rgba(255, 230, 184, 0.95);
+  margin-top: 0.35rem;
+}
+.countdown-sep {
+  width: 1px;
+  height: 2.4rem;
+  background: linear-gradient(180deg, transparent, rgba(210,170,80,0.40), transparent);
+  flex-shrink: 0;
+}
+
+/* amp lines */
+.hero-copy .amp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin: 0.55rem 0;
+}
+.amp-text {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  color: #ffd892;
+  text-shadow: 0 1px 12px rgba(24, 11, 4, 0.78);
+  letter-spacing: 0.05em;
+}
+.amp-line {
+  display: block;
+  width: clamp(28px, 5vw, 54px);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #d4a85a, transparent);
+  opacity: 0.85;
+}
+
+/* Music button */
+.hero-music-btn {
+  position: absolute;
+  bottom: 2rem; right: 2rem;
+  z-index: 21;
+  width: 46px; height: 46px;
+  border-radius: 50%;
+  background: rgba(9,7,20,0.55);
+  border: 1px solid rgba(210,170,80,0.35);
+  color: rgba(210,170,80,0.85);
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: all 0.35s ease;
+}
+.hero-music-btn:hover {
+  background: rgba(26,16,40,0.75);
+  border-color: rgba(210,170,80,0.65);
+  color: #f8ecd5;
+  transform: scale(1.08);
+}
+
+/* Scroll indicator */
+.scroll-indicator {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 19;
+  display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+  color: rgba(210,170,80,0.70);
+  font-family: var(--font-sans); font-size: 0.65rem; letter-spacing: 0.4em; text-transform: uppercase;
+}
+.scroll-ornament { font-size: 0.7rem; opacity: 0.75; }
+.scroll-indicator .track {
+  width: 1px; height: 55px;
+  background: linear-gradient(180deg, currentColor, transparent);
+  position: relative; overflow: hidden;
+}
+.scroll-indicator .track::after {
+  content: ""; position: absolute; left: -1px; top: -30px; width: 3px; height: 30px;
+  background: linear-gradient(180deg, transparent, currentColor);
+  animation: sd 2.2s ease-in-out infinite;
+}
+@keyframes sd { 0% { top: -30px; } 100% { top: 100%; } }
+
+/* ---------- Section shell ---------- */
+
+.section {
+  position: relative;
+  padding: 8rem 1.5rem;
+  background: var(--grad-page);
+}
+.section-dark {
+  background: var(--grad-night);
+  color: var(--ivory);
+}
+.container-narrow { max-width: 62rem; margin: 0 auto; }
+.container-wide   { max-width: 88rem; margin: 0 auto; }
+
+/* Invitation card styles moved to reference-design block at bottom of file. */
+
+/* ---------- Timeline ---------- */
+
+.timeline { position: relative; padding: 3rem 0; }
+.timeline .spine {
+  position: absolute; left: 50%; top: 0; bottom: 0; width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(180deg, transparent, color-mix(in oklab, var(--gold) 60%, transparent), transparent);
+}
+.event-card {
+  position: relative;
+  padding: 2.5rem;
+  border-radius: var(--radius-lg);
+  background: color-mix(in oklab, var(--ivory) 92%, var(--champagne));
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+.event-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.event-dot {
+  position: absolute; top: 2.5rem;
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--grad-gold);
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--gold) 20%, transparent);
+}
+
+/* ---------- Curtains ---------- */
+
+.stage { position: relative; overflow: hidden; border-radius: var(--radius-xl); }
+.curtain {
+  position: absolute; top: 0; bottom: 0; width: 52%;
+  background:
+    repeating-linear-gradient(90deg, oklch(0.22 0.09 340) 0px, oklch(0.30 0.11 340) 30px, oklch(0.20 0.09 340) 60px),
+    var(--grad-royal);
+  z-index: 3;
+  box-shadow: inset 0 0 60px color-mix(in oklab, var(--burgundy) 60%, transparent);
+}
+.curtain.left  { left: 0;  transform-origin: left center; }
+.curtain.right { right: 0; transform-origin: right center; }
+.curtain::after {
+  content: ""; position: absolute; top: 0; bottom: 0; width: 40px;
+  background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--gold) 45%, transparent));
+}
+.curtain.left::after  { right: 0; }
+.curtain.right::after { left: 0; transform: scaleX(-1); }
+
+/* ---------- Photo Wall Gallery ---------- */
+
+/* Section background */
+.photo-wall-section {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 40%, #fdf7ee 0%, #f5ece0 55%, #ede2d4 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Paper texture overlay */
+.pw-bg-texture {
+  position: absolute; inset: 0;
+  background-image:
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='300' height='300' filter='url(%23n)' opacity='0.035'/></svg>");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Radial glow behind gallery */
+.pw-bg-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(245,230,190,0.55) 0%, transparent 70%);
+  pointer-events: none; z-index: 0;
+}
+
+/* Soft vignette */
+.pw-vignette {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 110% 100% at 50% 50%, transparent 40%, rgba(180,150,110,0.18) 80%, rgba(140,110,70,0.28) 100%);
+  pointer-events: none; z-index: 0;
+}
+
+/* ── Wall container ── */
+.pw-wall {
+  position: relative; z-index: 2;
+  padding: 0 1rem 5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3.5rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ── One rope row ── */
+.pw-rope-row {
+  position: relative;
+  width: 100%;
+  padding-top: 3rem;
+  animation: ropeReveal 1.2s ease both;
+  animation-delay: calc(var(--row) * 0.28s + 0.2s);
+}
+@keyframes ropeReveal {
+  from { opacity: 0; transform: translateY(-20px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* SVG rope stretches full width — deeper catenary sag */
+.pw-rope-svg {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 52px;
+  overflow: visible;
+}
+
+/* ── Photos row ── */
+.pw-photos-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 0 2.2rem;
+  padding-top: 0.6rem;
+}
+
+/* ── Botanical branch at each rope end ── */
+.pw-botanical {
+  position: absolute;
+  top: -18px;
+  z-index: 6;
+  pointer-events: none;
+}
+.pw-botanical--left  { left: -8px; }
+.pw-botanical--right { right: -8px; transform: scaleX(-1); }
+
+/* ── Per-photo wrapper (holds clip + string + polaroid) ── */
+.pw-photo-wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* Wooden clothespin */
+.pw-clip-wrap {
+  position: absolute;
+  top: -22px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 5;
+  filter: drop-shadow(0 2px 3px rgba(60,30,10,0.30));
+}
+.pw-clip {
+  display: block;
+}
+
+/* Short string from clip to photo */
+.pw-string {
+  width: 1.5px;
+  height: 16px;
+  background: linear-gradient(180deg, rgba(110,75,35,0.70), rgba(110,75,35,0.30));
+  flex-shrink: 0;
+}
+
+/* ── Polaroid photo — UNIFORM portrait style ── */
+.pw-photo {
+  display: flex;
+  flex-direction: column;
+  background: #fffdf8;
+  border: none;
+  padding: 7px 7px 30px;
+  border-radius: 2px;
+  box-shadow:
+    0 5px 20px rgba(60,30,10,0.16),
+    0 1px 4px  rgba(60,30,10,0.10),
+    inset 0 0 0 0.5px rgba(200,170,120,0.25);
+  cursor: pointer;
+  transform: rotate(var(--rot));
+  transform-origin: top center;
+  transition:
+    transform 0.55s cubic-bezier(.34,1.56,.64,1),
+    box-shadow 0.45s ease;
+  animation: photoHang 0.9s cubic-bezier(.34,1.56,.64,1) both;
+  animation-delay: calc(var(--idx) * 0.11s + 0.5s);
+  position: relative;
+  overflow: hidden;
+  width: 155px;
+}
+@keyframes photoHang {
+  0%   { opacity: 0; transform: rotate(calc(var(--rot) + 10deg)) translateY(-20px); }
+  60%  { opacity: 1; }
+  100% { opacity: 1; transform: rotate(var(--rot)) translateY(0); }
+}
+.pw-photo:hover {
+  transform: rotate(0deg) translateY(-14px) scale(1.06);
+  box-shadow:
+    0 22px 55px rgba(60,30,10,0.26),
+    0 5px  16px rgba(60,30,10,0.16),
+    0 0 30px 6px rgba(200,160,60,0.18),
+    inset 0 0 0 0.5px rgba(200,170,120,0.40);
+  z-index: 10;
+}
+
+/* Photo image container — uniform portrait ratio */
+.pw-photo-inner {
+  overflow: hidden;
+  border-radius: 1px;
+  width: 141px;
+  height: 170px;
+}
+.pw-photo-inner img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.pw-photo:hover .pw-photo-inner img {
+  transform: scale(1.05);
+}
+
+/* Polaroid caption strip */
+.pw-caption {
+  flex-shrink: 0;
+  height: 100%;
+}
+
+/* ── Responsive ── */
+@media (max-width: 900px) {
+  .pw-wall { gap: 3rem; padding: 0 1rem 3rem; }
+  .pw-photos-row { gap: 0 1.5rem; }
+  .pw-photo { width: 130px; }
+  .pw-photo-inner { width: 116px; height: 140px; }
+}
+@media (max-width: 640px) {
+  .pw-photos-row { flex-wrap: wrap; gap: 1rem 1.2rem; }
+  .pw-rope-row { padding-top: 2.5rem; }
+  .pw-photo { width: 140px; }
+  .pw-photo-inner { width: 126px; height: 152px; }
+  .pw-botanical { display: none; }
+}
+@media (max-width: 420px) {
+  .pw-photos-row { flex-wrap: wrap; gap: 0.8rem 1rem; }
+  .pw-photo { width: 130px; }
+  .pw-photo-inner { width: 116px; height: 140px; }
+}
+
+/* ── Lightbox ── */
+.lightbox {
+  position: fixed; inset: 0; z-index: 80;
+  background: rgba(10,6,20,0.88);
+  backdrop-filter: blur(18px);
+  display: flex; align-items: center; justify-content: center;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+.lightbox img {
+  max-width: 92vw; max-height: 88vh;
+  border-radius: 4px;
+  box-shadow: 0 40px 100px rgba(0,0,0,0.65);
+  border: 8px solid #fffdf7;
+}
+
+/* ---------- Things to know cards ---------- */
+
+.info-card {
+  padding: 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid color-mix(in oklab, var(--gold) 30%, transparent);
+  background: color-mix(in oklab, var(--ivory) 90%, var(--champagne));
+  transition: transform 0.5s ease, box-shadow 0.5s ease, border-color 0.5s ease;
+}
+.info-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
+  border-color: color-mix(in oklab, var(--gold) 55%, transparent);
+}
+.info-icon {
+  width: 46px; height: 46px; border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  color: var(--bronze);
+  background: color-mix(in oklab, var(--gold) 18%, transparent);
+  border: 1px solid color-mix(in oklab, var(--gold) 40%, transparent);
+  margin-bottom: 1rem;
+}
+
+/* ---------- Petals / particles ---------- */
+
+.petals { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.petal {
+  position: absolute; top: -10%;
+  width: 14px; height: 18px;
+  background: radial-gradient(ellipse at center, color-mix(in oklab, var(--gold) 60%, var(--champagne)), color-mix(in oklab, var(--burgundy) 40%, transparent));
+  border-radius: 60% 40% 60% 40%;
+  opacity: 0.6;
+  filter: blur(0.3px);
+  animation: fall linear infinite;
+}
+@keyframes fall {
+  0%   { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+  10%  { opacity: 0.7; }
+  100% { transform: translate3d(40px, 110vh, 0) rotate(540deg); opacity: 0; }
+}
+
+/* ---------- Reveal helpers (initial state; GSAP animates) ---------- */
+
+.reveal { opacity: 0; transform: translateY(30px); }
+.reveal-fast { opacity: 0; }
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .reveal, .reveal-fast { opacity: 1; transform: none; }
+}
+
+/* ============================================================
+   REFERENCE INVITATION DESIGN — Elephant bridge + Invite card
+   Ported from template01/style.css to match user's uploaded design
+   ============================================================ */
+
+/* Elephant transition bridge */
+.eleph-bridge {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: linear-gradient(180deg, #F5D0A8 0%, #F2E0D8 100%);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  overflow: visible;
+  z-index: 10;
+}
+@media (max-width: 600px) { .eleph-bridge { height: 220px; } }
+
+.eleph { position: relative; width: 42%; max-width: 280px; flex-shrink: 0; }
+.eleph-l { align-self: flex-end; transform-origin: 50% 100%; animation: elephWalkL 3.2s ease-in-out infinite; }
+.eleph-r { align-self: flex-end; transform-origin: 50% 100%; animation: elephWalkR 3.2s ease-in-out infinite 0.4s; }
+
+@keyframes elephWalkL {
+  0%   { transform: rotate(-1.5deg) translateY(0px); }
+  25%  { transform: rotate(1.2deg)  translateY(-5px); }
+  50%  { transform: rotate(-1.8deg) translateY(-2px); }
+  75%  { transform: rotate(1.0deg)  translateY(-6px); }
+  100% { transform: rotate(-1.5deg) translateY(0px); }
+}
+@keyframes elephWalkR {
+  0%   { transform: rotate(1.5deg)  translateY(-2px); }
+  25%  { transform: rotate(-1.2deg) translateY(-6px); }
+  50%  { transform: rotate(1.8deg)  translateY(-1px); }
+  75%  { transform: rotate(-1.0deg) translateY(-5px); }
+  100% { transform: rotate(1.5deg)  translateY(-2px); }
+}
+
+.eleph img {
+  width: 100%; height: auto; display: block;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 8px 24px rgba(61, 30, 46, 0.18));
+}
+
+/* Invitation section */
+.s-invite {
+  position: relative;
+  overflow: hidden;
+  background: #F2E0D8;
+  padding: 0 0 80px;
+}
+.s-invite::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(196,116,140,.22) 0%, transparent 55%),
+    radial-gradient(ellipse 60% 50% at 75% 65%, rgba(196,152,90,.18) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 50% 20%, rgba(240,180,120,.15) 0%, transparent 60%);
+}
+.s-invite .bg-fill {
+  position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  pointer-events: none; opacity: 0.22; z-index: 0;
+}
+
+.invite-couple-bg {
+  position: absolute;
+  right: -2%;
+  bottom: 0%;
+  width: 52%;
+  max-width: 420px;
+  mix-blend-mode: screen;
+  opacity: 0.55;
+  z-index: 1;
+  pointer-events: none;
+  animation: coupleFloat 6s ease-in-out infinite;
+}
+@keyframes coupleFloat {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@media (max-width: 640px) {
+  .invite-couple-bg { width: 75%; right: -6%; opacity: 0.45; }
+}
+
+.toran {
+  position: absolute; top: 0; left: 0; right: 0;
+  height: 120px; overflow: hidden; z-index: 2; pointer-events: none;
+}
+.toran-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+
+.fl-moon   { position: absolute; top: 12%;    right: 3%; width: 90px; mix-blend-mode: multiply; z-index: 2; animation: moonFloat 7s ease-in-out infinite; pointer-events: none; }
+.fl-leaf-l { position: absolute; bottom: 15%; left: 1%;  width: 80px; mix-blend-mode: multiply; z-index: 2; animation: leafL 6s ease-in-out infinite; pointer-events: none; }
+.fl-leaf-r { position: absolute; bottom: 12%; right: 1%; width: 70px; mix-blend-mode: multiply; z-index: 2; animation: leafR 7s ease-in-out infinite 3s; pointer-events: none; }
+@keyframes moonFloat { 0%,100% { transform: translateY(0) rotate(-5deg); } 50% { transform: translateY(-12px) rotate(5deg); } }
+@keyframes leafL     { 0%,100% { transform: rotate(-9deg); } 50% { transform: rotate(9deg); } }
+@keyframes leafR     { 0%,100% { transform: rotate(9deg); }  50% { transform: rotate(-9deg); } }
+
+.s-invite .container {
+  position: relative;
+  z-index: 3;
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 140px 24px 0;
+}
+
+/* Invite card — glass morphism */
+.invite-card {
+  max-width: 540px;
+  margin: 0 auto;
+  background: rgba(255, 250, 242, 0.52);
+  backdrop-filter: blur(14px) saturate(140%) brightness(1.04);
+  -webkit-backdrop-filter: blur(14px) saturate(140%) brightness(1.04);
+  border-top: 1px solid rgba(255,255,255,0.75);
+  border-left: 1px solid rgba(255,255,255,0.50);
+  border-right: 1px solid rgba(255,255,255,0.30);
+  border-bottom: 1px solid rgba(196,152,90,0.20);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.80),
+    inset 0 -1px 0 rgba(196,152,90,0.10),
+    0 32px 64px -16px rgba(61,30,46,0.24),
+    0 8px 24px rgba(61,30,46,0.10),
+    0 0 0 0.5px rgba(255,255,255,0.40);
+  padding: 52px 44px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  transition: transform .65s cubic-bezier(0.34,1.56,0.64,1), box-shadow .65s cubic-bezier(0.34,1.56,0.64,1);
+}
+@media (pointer: fine) {
+  .invite-card:hover {
+    transform: scale(1.016) rotate(0.4deg);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,0.85),
+      inset 0 -1px 0 rgba(196,152,90,0.12),
+      0 50px 90px -16px rgba(196,152,90,0.38),
+      0 16px 40px rgba(61,30,46,0.14),
+      0 0 0 1px rgba(255,255,255,0.50);
+  }
+}
+@media (max-width: 480px) { .invite-card { padding: 36px 20px; } }
+
+.card-tl, .card-tr { position: absolute; top: 0; }
+.card-tl { left: 0; }
+.card-tr { right: 0; }
+
+.i-ganesha { margin-bottom: 14px; display: flex; justify-content: center; }
+.i-ganesha-img {
+  width: 100px; height: 100px;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+  filter: drop-shadow(0 4px 16px rgba(196,152,90,.35));
+  animation: refi-pulse 4s ease-in-out infinite;
+}
+@keyframes refi-pulse { 0%,100% { transform: scale(1); } 50% { transform: scale(1.07); } }
+
+.i-rule { margin: 16px auto; max-width: 300px; display: flex; justify-content: center; }
+.i-bless {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-size: .92rem; line-height: 2;
+  color: #4A2810; margin-bottom: 14px; font-weight: 400;
+}
+.i-label {
+  font-family: 'Raleway', sans-serif;
+  font-size: .58rem; font-weight: 400; letter-spacing: .28em;
+  text-transform: uppercase; color: #C4985A;
+  margin-bottom: 12px;
+}
+.i-names {
+  display: flex; align-items: baseline; justify-content: center;
+  gap: 10px; margin: 4px 0 16px; flex-wrap: wrap;
+}
+.i-bride, .i-groom {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic; font-weight: 500;
+  font-size: clamp(2rem, 6vw, 3.4rem);
+  color: #3D1E2E;
+}
+.i-amp {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-size: 1.6rem; color: #A0724A;
+}
+.i-fam {
+  display: flex; gap: 24px; justify-content: center; flex-wrap: wrap;
+  margin: 16px 0;
+  font-family: 'Raleway', sans-serif; font-weight: 300;
+  font-size: .78rem; line-height: 1.9; color: #7A5840;
+}
+.fam-side { display: flex; flex-direction: column; align-items: center; }
+.fam-parents { font-family: 'Raleway', sans-serif; font-weight: 300; font-size: .78rem; line-height: 1.9; color: #7A5840; }
+.fam-parents em {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-size: .88rem;
+  display: block; color: #3D1E2E;
+}
+.fam-dot { color: #C4985A; align-self: center; font-size: .7rem; }
+.i-close {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic; font-size: .88rem;
+  color: #3D1E2E; opacity: .75; margin-top: 14px;
+}
